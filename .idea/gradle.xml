@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -11,6 +12,11 @@
             <option value="$PROJECT_DIR$/center-server/api-gateway" />
             <option value="$PROJECT_DIR$/center-server/configuration-server" />
             <option value="$PROJECT_DIR$/center-server/eureka-server" />
+            <option value="$PROJECT_DIR$/center-server/iam-server" />
+            <option value="$PROJECT_DIR$/microservice" />
+            <option value="$PROJECT_DIR$/microservice/account-service" />
+            <option value="$PROJECT_DIR$/microservice/form-service" />
+            <option value="$PROJECT_DIR$/microservice/pipeline-service" />
           </set>
         </option>
       </GradleProjectSettings>

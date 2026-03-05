@@ -7,16 +7,17 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.42/8365263844ebb62398e0dc33057ba10ba472d3b8/lombok-1.18.42.jar" />
         </processorPath>
+        <module name="et-life.microservice.pipeline-service.main" />
+        <module name="et-life.microservice.account-service.main" />
         <module name="et-life.center-server.api-gateway.main" />
+        <module name="et-life.center-server.iam-server.main" />
+        <module name="et-life.microservice.form-service.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="25" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="et-life.center-server.api-gataway" options="-parameters" />
-      <module name="et-life.center-server.api-gataway.main" options="-parameters" />
-      <module name="et-life.center-server.api-gataway.test" options="-parameters" />
       <module name="et-life.center-server.api-gateway" options="-parameters" />
       <module name="et-life.center-server.api-gateway.main" options="-parameters" />
       <module name="et-life.center-server.api-gateway.test" options="-parameters" />
@@ -26,6 +27,18 @@
       <module name="et-life.center-server.eureka-server" options="-parameters" />
       <module name="et-life.center-server.eureka-server.main" options="-parameters" />
       <module name="et-life.center-server.eureka-server.test" options="-parameters" />
+      <module name="et-life.center-server.iam-server" options="-parameters" />
+      <module name="et-life.center-server.iam-server.main" options="-parameters" />
+      <module name="et-life.center-server.iam-server.test" options="-parameters" />
+      <module name="et-life.microservice.account-service" options="-parameters" />
+      <module name="et-life.microservice.account-service.main" options="-parameters" />
+      <module name="et-life.microservice.account-service.test" options="-parameters" />
+      <module name="et-life.microservice.form-service" options="-parameters" />
+      <module name="et-life.microservice.form-service.main" options="-parameters" />
+      <module name="et-life.microservice.form-service.test" options="-parameters" />
+      <module name="et-life.microservice.pipeline-service" options="-parameters" />
+      <module name="et-life.microservice.pipeline-service.main" options="-parameters" />
+      <module name="et-life.microservice.pipeline-service.test" options="-parameters" />
     </option>
   </component>
 </project>
