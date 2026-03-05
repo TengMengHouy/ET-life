@@ -2,32 +2,33 @@
 
 # Function to display colored text
 color_text() {
-    echo -e "\e[1;32m$1\e[0m"  # Green color
+    echo -e "\e[1;32m$1\e[0m"  # Green color for regular output
+}
+
+error_text() {
+    echo -e "\e[1;31m$1\e[0m"  # Red color for error messages
+}
+
+info_text() {
+    echo -e "\e[1;34m$1\e[0m"  # Blue color for informational messages
 }
 
 # Main menu
 while true; do
     echo "Select an option:"
-    echo "1) git push"
-    echo "2) git pull"
-    echo "3) git add (selectively and auto-push)"
-    echo "4) git add (all changes and auto-push)"
-    echo "5) Manage Remotes"
-    echo "6) Manage Branches"
-    echo "7) Merge Branches"
+    echo "1) git add (selectively)"
+    echo "2) git add (all changes)"
+    echo "3) git status"
+    echo "4) Manage Remotes"
+    echo "5) Manage Branches"
+    echo "6) Merge Branches"
+    echo "7) Commit Changes with Update Message"
     echo "8) Exit"
 
     read -p "Enter your choice (1-8): " choice
 
     case $choice in
         1)
-            read -p "Enter commit message for push: " message
-            git push
-            ;;
-        2)
-            git pull
-            ;;
-        3)
             echo -e "Files available to add (untracked):"
             git status --porcelain | grep '^\?\?' | awk '{print $2}' | while read -r file; do
                 color_text "$file"
@@ -40,17 +41,16 @@ while true; do
 
             read -p "Enter the file(s) to add (or space-separated list): " files
             git add $files
-            read -p "Enter commit message: " message
-            git commit -m "$message"
-            git push
+            info_text "Added files: $files"
+            ;;
+        2)
+            git add .
+            info_text "All changes added."
+            ;;
+        3)
+            git status
             ;;
         4)
-            git add .
-            read -p "Enter commit message: " message
-            git commit -m "$message"
-            git push
-            ;;
-        5)
             echo "Manage Remote Repositories:"
             echo "1) Add Remote"
             echo "2) Remove Remote"
@@ -71,11 +71,11 @@ while true; do
                     git remote -v
                     ;;
                 *)
-                    echo "Invalid option for managing remotes."
+                    error_text "Invalid option for managing remotes."
                     ;;
             esac
             ;;
-        6)
+        5)
             echo "Manage Branches:"
             echo "1) List Branches"
             echo "2) Create New Branch"
@@ -95,20 +95,24 @@ while true; do
                     git checkout "$branch_name"
                     ;;
                 *)
-                    echo "Invalid option for managing branches."
+                    error_text "Invalid option for managing branches."
                     ;;
             esac
             ;;
-        7)
+        6)
             read -p "Enter the branch to merge into the current branch: " branch_to_merge
             git merge "$branch_to_merge"
+            ;;
+        7)
+            read -p "Enter commit message for update: " commit_message
+            git commit -m "$commit_message"
             ;;
         8)
             echo "Exiting..."
             exit 0
             ;;
         *)
-            echo "Invalid option. Please select a number between 1 and 8."
+            error_text "Invalid option. Please select a number between 1 and 8."
             ;;
     esac
 done
