@@ -59,6 +59,7 @@ while true; do
 
                 read -p "Enter commit message: " commit_message
                 git commit -m "$commit_message"
+                git push  # Automatically push changes
             else
                 error_text "No valid files to add."
             fi
@@ -69,6 +70,7 @@ while true; do
 
             read -p "Enter commit message: " commit_message
             git commit -m "$commit_message"
+            git push  # Automatically push changes
             ;;
         3)
             git status
