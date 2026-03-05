@@ -16,16 +16,15 @@ info_text() {
 # Main menu
 while true; do
     echo "Select an option:"
-    echo "1) git add (selectively)"
-    echo "2) git add (all changes)"
+    echo "1) git add (selectively and commit)"
+    echo "2) git add (all changes and commit)"
     echo "3) git status"
     echo "4) Manage Remotes"
     echo "5) Manage Branches"
     echo "6) Merge Branches"
-    echo "7) Commit Changes with Update Message"
-    echo "8) Exit"
+    echo "7) Exit"
 
-    read -p "Enter your choice (1-8): " choice
+    read -p "Enter your choice (1-7): " choice
 
     case $choice in
         1)
@@ -39,13 +38,37 @@ while true; do
                 color_text "$file"
             done
 
-            read -p "Enter the file(s) to add (or space-separated list): " files
-            git add $files
-            info_text "Added files: $files"
+            read -p "Enter the file(s) to add (or space-separated list): " -r files
+            # Convert to an array to handle spaces
+            IFS=' ' read -r -a file_array <<< "$files"
+            files_to_add=()
+
+            # Check if the files exist
+            for file in "${file_array[@]}"; do
+                if [[ -e $file ]]; then
+                    files_to_add+=("$file")  # Add existing files to the array
+                else
+                    error_text "File '$file' does not exist."
+                fi
+            done
+
+            # Only add files if there are valid ones
+            if [ ${#files_to_add[@]} -gt 0 ]; then
+                git add "${files_to_add[@]}"
+                info_text "Added files: ${files_to_add[*]}"
+
+                read -p "Enter commit message: " commit_message
+                git commit -m "$commit_message"
+            else
+                error_text "No valid files to add."
+            fi
             ;;
         2)
             git add .
             info_text "All changes added."
+
+            read -p "Enter commit message: " commit_message
+            git commit -m "$commit_message"
             ;;
         3)
             git status
@@ -104,15 +127,11 @@ while true; do
             git merge "$branch_to_merge"
             ;;
         7)
-            read -p "Enter commit message for update: " commit_message
-            git commit -m "$commit_message"
-            ;;
-        8)
             echo "Exiting..."
             exit 0
             ;;
         *)
-            error_text "Invalid option. Please select a number between 1 and 8."
+            error_text "Invalid option. Please select a number between 1 and 7."
             ;;
     esac
 done
