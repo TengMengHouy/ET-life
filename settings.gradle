@@ -1,0 +1,3 @@
+include ':center-server:configuration-server'
+include ':center-server:eureka-server'
+include ':center-server:api-gateway'
