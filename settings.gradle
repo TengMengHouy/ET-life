@@ -1,0 +1,7 @@
+include ':center-server:configuration-server'
+include ':center-server:eureka-server'
+include ':center-server:api-gateway'
+include ':center-server:iam-server'
+include ':microservice:account-service'
+include ':microservice:form-service'
+include ':microservice:pipeline-service'

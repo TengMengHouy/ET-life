@@ -1,0 +1,6 @@
+{
+  "name": "Form Dashboard",
+  "description": "An elegant, highly interactive, and minimalist forms manager dashboard designed with modern typography and fluid transitions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
